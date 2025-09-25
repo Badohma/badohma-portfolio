@@ -1,6 +1,6 @@
 # 🚀 Portfolio - Badohma BAKAYOKO
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)]([https://badohma.github.io/badohma-portfolio/])
+[![Portfolio](https://img.shields.io/badge/Portfolio-Live-brightgreen)](https://badohma.github.io/badohma-portfolio/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/badohma)
 [![Email](https://img.shields.io/badge/Email-Contact-red)](mailto:badohma@yahoo.com)
 
