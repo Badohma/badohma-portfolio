@@ -1,1 +1,51 @@
 
+{
+  "name": "badohma-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio professionnel de Badohma BAKAYOKO - Ingénieur Analyste Pricing B2B & Marchés de l'Énergie",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=8080",
+    "build": "echo 'No build required for static site'",
+    "deploy": "gh-pages -d .",
+    "test": "echo \"No tests configured\"",
+    "minify-css": "cleancss -o assets/css/style.min.css assets/css/style.css",
+    "minify-js": "uglifyjs assets/js/main.js -o assets/js/main.min.js"
+  },
+  "keywords": [
+    "portfolio",
+    "ingénieur",
+    "énergie",
+    "industrie 4.0",
+    "trading",
+    "optimisation",
+    "renault",
+    "vicat"
+  ],
+  "author": {
+    "name": "Badohma BAKAYOKO",
+    "email": "badohma@yahoo.com",
+    "url": "https://linkedin.com/in/badohma"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/badohma/badohma-portfolio.git"
+  },
+  "homepage": "https://badohma.github.io",
+  "devDependencies": {
+    "gh-pages": "^5.0.0",
+    "live-server": "^1.2.2",
+    "clean-css-cli": "^5.6.2",
+    "uglify-js": "^3.17.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}
