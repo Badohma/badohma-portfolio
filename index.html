@@ -19,6 +19,1668 @@
             --light: #F8F9FA;
             --gradient-warm: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
             --gradient-cool: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            --gradient-electric: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #FFF5EC 0%, #F0F9FF 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            background: linear-gradient(135deg, #FFF5EC 0%, #F0F9FF 50%, #FFE6E6 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background: linear-gradient(135deg, #FFF5EC 0%, #F0F9FF 50%, #FFE6E6 100%); }
+            50% { background: linear-gradient(135deg, #FFE6E6 0%, #FFF5EC 50%, #F0F9FF 100%); }
+        }
+
+        /* Energy Particles Animation */
+        .energy-field {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .energy-particle {
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, transparent, var(--primary), transparent);
+            opacity: 0.8;
+            animation: energyFlow 3s linear infinite;
+        }
+
+        @keyframes energyFlow {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--gradient-warm);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            right: 20%;
+            animation-delay: 5s;
+            background: var(--gradient-cool);
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 50%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            33% { transform: translateY(-50px) rotate(120deg) scale(1.1); }
+            66% { transform: translateY(-100px) rotate(240deg) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 50px 50px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* Glitch Effect for Name */
+        .glitch-name {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 10px;
+            position: relative;
+            animation: glitchText 2s infinite;
+        }
+
+        @keyframes glitchText {
+            0%, 100% {
+                text-shadow: 
+                    2px 2px 0 var(--primary),
+                    -2px -2px 0 var(--secondary);
+            }
+            25% {
+                text-shadow: 
+                    -2px 2px 0 var(--secondary),
+                    2px -2px 0 var(--primary);
+            }
+            50% {
+                text-shadow: 
+                    2px -2px 0 var(--primary),
+                    -2px 2px 0 var(--secondary);
+            }
+        }
+
+        .animated-title {
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Hero Stats */
+        .hero-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: morph 8s ease-in-out infinite;
+        }
+
+        /* Hologram effect overlay */
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            right: -5%;
+            bottom: -5%;
+            background: linear-gradient(45deg, transparent, var(--primary), transparent);
+            animation: rotate 3s linear infinite;
+            opacity: 0.3;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-warm);
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-electric);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover .btn-glow {
+            opacity: 1;
+            animation: pulse 1s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: var(--gradient-warm);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-text {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-warm);
+        }
+
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .skills-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category {
+            margin-bottom: 30px;
+        }
+
+        .skill-category h4 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFE66D20, #4ECDC420);
+            border: 1px solid var(--secondary);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--gradient-warm);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+            color: white;
+        }
+
+        .skill-tag:hover::before {
+            width: 150%;
+            height: 150%;
+        }
+
+        /* Experience Timeline */
+        .experience {
+            background: linear-gradient(135deg, #FFF5EC 0%, white 100%);
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-warm);
+            transform: translateX(-50%);
+        }
+
+        /* Electricity flow animation on timeline */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 4px;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--accent), transparent);
+            transform: translateX(-50%);
+            animation: electricFlow 2s linear infinite;
+        }
+
+        @keyframes electricFlow {
+            0% { top: -100px; }
+            100% { top: 100%; }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInTimeline 1s ease forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: calc(50% + 30px);
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: calc(50% + 30px);
+        }
+
+        @keyframes fadeInTimeline {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.2);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content .company {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content .date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            animation: pulseDot 2s ease infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 107, 53, 0);
+            }
+        }
+
+        /* Projects Section */
+        .projects {
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-warm);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, white, #FFF5EC);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-warm);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1), transparent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover::after {
+            width: 500px;
+            height: 500px;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            animation: iconFloat 3s ease infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .project-company {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .project-results {
+            background: linear-gradient(135deg, #4ECDC420, #FFE66D20);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .result-item::before {
+            content: "⚡";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 10px;
+            animation: spark 2s ease infinite;
+        }
+
+        @keyframes spark {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-badge {
+            background: var(--gradient-warm);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-badge::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s ease infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #FFF5EC 0%, white 100%);
+            text-align: center;
+            padding: 100px 50px;
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--gradient-warm);
+            transition: height 0.3s ease;
+            z-index: -1;
+        }
+
+        .contact-card:hover::before {
+            height: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            color: white;
+        }
+
+        .contact-card:hover a {
+            color: white;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-warm);
+            animation: scanLine 2s linear infinite;
+        }
+
+        @keyframes scanLine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .profile-container {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 70px;
+                padding-right: 20px;
+                text-align: left;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.mobile-active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                width: 100%;
+            }
+        }
+
+        /* Scroll reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--light);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Energy Field Animation -->
+    <div class="energy-field" id="energyField"></div>
+    
+    <div class="bg-animation"></div>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Badohma BAKAYOKO</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="glitch-name" data-text="Badohma BAKAYOKO">Badohma BAKAYOKO</h1>
+                <p class="title animated-title">Ingénieur Marchés de l'Énergie | Optimisation & Flexibilité | Industrie 4.0</p>
+                <p class="subtitle">
+                    <span class="typing-text"></span>
+                </p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <span>Découvrir mes projets</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="https://linkedin.com/in/badohma" target="_blank" class="btn btn-secondary">
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">M€/an gérés</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="30">0</span>
+                        <span class="stat-label">% réduction énergétique</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="1.2">0</span>
+                        <span class="stat-label">M€ flexibilité/an</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-container">
+                    <img src="assets/images/bk.jpg" alt="Badohma BAKAYOKO" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about reveal" id="about">
+        <h2 class="section-title">À propos</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Mon Expertise</h3>
+                <p>Acteur des marchés de l'énergie et de la transition énergétique avec une double compétence technique et business. Je combine une expérience en optimisation énergétique industrielle via la digitalisation et l'automatisation avec une expertise croissante en marchés de l'électricité et du gaz.</p>
+                
+                <h3>Mission Actuelle</h3>
+                <p>Au sein du service Énergie & Matières Premières du groupe <strong>VICAT</strong> (CA 3,6 Md€, 12 pays), j'interviens sur la stratégie d'optimisation énergétique multi-sites avec un budget >15 M€/an et une valorisation de la flexibilité >1,2 M€/an.</p>
+                
+                <h3>Formations</h3>
+                <p><strong>2024-2025:</strong> Mastère Spécialisé Management et Marketing de l'Énergie - Grenoble École de Management & Grenoble INP-Ense3</p>
+                <p><strong>2021-2024:</strong> Ingénieur Systèmes Électriques et Électroniques Embarqués Option Énergie - CESI École d'Ingénieurs</p>
+                <p><strong>2020-2021:</strong> Licence Génie Électrique et Informatique Industrielle - Université de Pau</p>
+                
+                <h3>Certifications</h3>
+                <p>✅ ETRM (Energy Trading and Risk Management) - En cours</p>
+                <p>✅ Foundations of the Fourth Industrial Revolution (Industry 4.0)</p>
+                <p>✅ TOEIC 825/990</p>
+                <p>✅ Jira Fundamentals Badge</p>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4>⚡ Énergie & Marchés</h4>
+                    <span class="skill-tag">Trading élec/gaz</span>
+                    <span class="skill-tag">ARENH</span>
+                    <span class="skill-tag">PPA</span>
+                    <span class="skill-tag">Flexibilité</span>
+                    <span class="skill-tag">Risk Management</span>
+                    <span class="skill-tag">Spot/Forward</span>
+                    <span class="skill-tag">Effacement</span>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>🔧 Technique</h4>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">MATLAB/Simulink</span>
+                    <span class="skill-tag">Codesys</span>
+                    <span class="skill-tag">TIA Portal</span>
+                    <span class="skill-tag">Machine Expert</span>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>📊 Data & IoT</h4>
+                    <span class="skill-tag">Grafana</span>
+                    <span class="skill-tag">Power BI</span>
+                    <span class="skill-tag">Spotfire</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">Node-RED</span>
+                    <span class="skill-tag">MQTT</span>
+                    <span class="skill-tag">OPC-UA</span>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>🌍 Langues</h4>
+                    <span class="skill-tag">Français (Natif)</span>
+                    <span class="skill-tag">Anglais (C1)</span>
+                    <span class="skill-tag">Espagnol (A2)</span>
+                    <span class="skill-tag">Dioula</span>
+                    <span class="skill-tag">Koyaka</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="section experience reveal" id="experience">
+        <h2 class="section-title">Expérience Professionnelle</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Chargé de mission Optimisation marchés de l'énergie</h3>
+                    <p class="company">GROUPE VICAT - Lyon</p>
+                    <p class="date">Septembre 2024 - Novembre 2025</p>
+                    <ul>
+                        <li>Analyse et suivi des prix spot horaires sur les marchés européens</li>
+                        <li>Pilotage et vérification de la facturation mensuelle multi-sites</li>
+                        <li>Évaluation et optimisation des programmes de flexibilité électrique</li>
+                        <li>Modélisation de scénarios de couverture et d'optimisation</li>
+                        <li>Benchmark et sélection d'outils de management de l'énergie</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Ingénieur projet industrie 4.0</h3>
+                    <p class="company">RENAULT GROUP - Le Mans</p>
+                    <p class="date">Octobre 2021 - Septembre 2024</p>
+                    <ul>
+                        <li><strong>Mission 2023-2024:</strong> Instrumentation 4.0 énergétique</li>
+                        <li>Programmation automates Schneider TM251 et IFM AE3100</li>
+                        <li>Création base de données PostgreSQL et dashboards Grafana</li>
+                        <li>Résultat : Réduction de 30% de la consommation énergétique</li>
+                        <li><strong>Mission 2022-2023:</strong> IHM supervision robots soudure & AMH</li>
+                        <li>Optimisation du temps de maintenance et passage en prédictif</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Mechanical Engineering</h3>
+                    <p class="company">EUTECH ENGINEERS - Berlin</p>
+                    <p class="date">Juin 2023 - Septembre 2023</p>
+                    <ul>
+                        <li>Optimisation du rendement énergétique des éoliennes</li>
+                        <li>Modélisation 3D et simulation Matlab/Simulink</li>
+                        <li>Amélioration du rendement de 15%</li>
+                        <li>Conception d'échangeur thermique</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Étudiant-chercheur</h3>
+                    <p class="company">INP-HB - Yamoussoukro</p>
+                    <p class="date">Décembre 2019 - Février 2020</p>
+                    <ul>
+                        <li>Étude et maintenance de véhicules électriques</li>
+                        <li>Planification de la maintenance préventive</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects reveal" id="projects">
+        <h2 class="section-title">Projets Phares</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">💰</div>
+                <h3 class="project-title">Valorisation Flexibilité Énergétique</h3>
+                <p class="project-company">VICAT</p>
+                <p class="project-description">
+                    Analyse et valorisation de la flexibilité énergétique du groupe sur les marchés de l'électricité avec modélisation de scénarios.
+                </p>
+                <div class="project-results">
+                    <div class="result-item">Potentiel valorisé : >1,2 M€/an</div>
+                    <div class="result-item">Budget géré : >15 M€/an</div>
+                    <div class="result-item">Outils de management créés</div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Trading</span>
+                    <span class="tech-badge">Power BI</span>
+                    <span class="tech-badge">Spot Markets</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">⚡</div>
+                <h3 class="project-title">Instrumentation 4.0 Énergétique</h3>
+                <p class="project-company">RENAULT GROUP</p>
+                <p class="project-description">
+                    Pilotage projet d'instrumentation et supervision des départements cataphorèse et fonderie pour optimisation énergétique.
+                </p>
+                <div class="project-results">
+                    <div class="result-item">Réduction conso : -30%</div>
+                    <div class="result-item">Économies : 750k€/an</div>
+                    <div class="result-item">ROI : 18 mois</div>
+                    <div class="result-item">CO2 : -360t/an</div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">TM251 Schneider</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">Grafana</span>
+                    <span class="tech-badge">Node-RED</span>
+                    <span class="tech-badge">MQTT</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🤖</div>
+                <h3 class="project-title">Supervision IHM Robots & AMH</h3>
+                <p class="project-company">RENAULT GROUP</p>
+                <p class="project-description">
+                    Création IHM de supervision et dashboards pour robots de soudure et engins AMH pour maintenance prédictive.
+                </p>
+                <div class="project-results">
+                    <div class="result-item">Temps maintenance : -25%</div>
+                    <div class="result-item">Détection pannes optimisée</div>
+                    <div class="result-item">Passage en prédictif</div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">Blue Open Studio</span>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">SharePoint</span>
+                    <span class="tech-badge">OPC-UA</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🌬️</div>
+                <h3 class="project-title">Optimisation Éoliennes</h3>
+                <p class="project-company">EUTECH ENGINEERS</p>
+                <p class="project-description">
+                    Optimisation du rendement énergétique par modélisation 3D et ajustement de la forme des pales.
+                </p>
+                <div class="project-results">
+                    <div class="result-item">Rendement : +15%</div>
+                    <div class="result-item">Simulation validée</div>
+                    <div class="result-item">Documentation complète</div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">MATLAB/Simulink</span>
+                    <span class="tech-badge">Fusion 360</span>
+                    <span class="tech-badge">FreeCAD</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">♻️</div>
+                <h3 class="project-title">Biodigesteur 1000 habitants</h3>
+                <p class="project-company">CESI - Projet École</p>
+                <p class="project-description">
+                    Conception d'un dispositif biodigesteur de production de biogaz pour une communauté rurale.
+                </p>
+                <div class="project-results">
+                    <div class="result-item">Production : 136 875 kWh/an</div>
+                    <div class="result-item">Solution écologique</div>
+                    <div class="result-item">Étude complète</div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">MATLAB</span>
+                    <span class="tech-badge">Canvas</span>
+                    <span class="tech-badge">Dimensionnement</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🎯</div>
+                <h3 class="project-title">Management de l'Énergie IoT</h3>
+                <p class="project-company">CESI - Projet R&D</p>
+                <p class="project-description">
+                    Conception carte IoT pour optimisation énergétique autonome entre panneau solaire et réseau EDF.
+                </p>
+                <div class="project-results">
+                    <div class="result-item">Système autonome</div>
+                    <div class="result-item">Gestion intelligente</div>
+                    <div class="result-item">Prototype fonctionnel</div>
+                </div>
+                <div class="tech-stack">
+                    <span class="tech-badge">IoT</span>
+                    <span class="tech-badge">Proteus</span>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Canvas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section certifications reveal" id="certifications">
+        <h2 class="section-title">Certifications & Compétences</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">🎓</div>
+                <h3 class="project-title">Certifications</h3>
+                <ul>
+                    <li>✅ ETRM (Energy Trading and Risk Management) - En cours</li>
+                    <li>✅ Foundations of the Fourth Industrial Revolution</li>
+                    <li>✅ TOEIC 825/990</li>
+                    <li>✅ Jira Fundamentals Badge</li>
+                    <li>✅ SharePoint: Site Customization</li>
+                    <li>✅ Python : La visualisation des données</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🏆</div>
+                <h3 class="project-title">Normes & Méthodes</h3>
+                <ul>
+                    <li>✅ ISO 50001 (Management énergie)</li>
+                    <li>✅ ISO 14001 (Management environnement)</li>
+                    <li>✅ AMDEC, PDCA, DMAIC</li>
+                    <li>✅ 5P, 5S, Kaizen</li>
+                    <li>✅ Méthode Agile/Scrum</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🌟</div>
+                <h3 class="project-title">Centres d'intérêt</h3>
+                <ul>
+                    <li>🏃 Athlétisme (5 ans de pratique)</li>
+                    <li>⚽ Football</li>
+                    <li>✈️ Voyages (Allemagne, Italie, Espagne, République Tchèque...)</li>
+                    <li>🎬 Montage vidéo et création</li>
+                    <li>📚 Lecture (Management, Marketing, BD)</li>
+                    <li>🎵 Musique</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact reveal" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Prêt à collaborer sur vos projets énergétiques et d'optimisation ?</p>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <a href="mailto:bakayokobadohma@gmail.com">bakayokobadohma@gmail.com</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <h3>Téléphone</h3>
+                <a href="tel:+33753141965">07 53 14 19 65</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/badohma" target="_blank">linkedin.com/in/badohma</a>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h3>Localisation</h3>
+                <p>Lyon, France</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Badohma BAKAYOKO | Ingénieur Marchés de l'Énergie | Créé avec passion pour l'innovation énergétique</p>
+    </footer>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Energy particles
+        function createEnergyParticles() {
+            const field = document.getElementById('energyField');
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'energy-particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (2 + Math.random() * 2) + 's';
+                field.appendChild(particle);
+            }
+        }
+        createEnergyParticles();
+
+        // Typing animation
+        const typingTexts = [
+            "Acteur des marchés de l'énergie et de la transition énergétique",
+            "Double expertise : Trading énergétique et Industrie 4.0",
+            "Optimisation industrielle et modélisation financière",
+            "Pilotage de projets innovants en énergie"
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 50;
+        const deletingSpeed = 30;
+        const pauseTime = 2000;
+
+        function typeText() {
+            const typingElement = document.querySelector('.typing-text');
+            if (!typingElement) return;
+
+            const currentText = typingTexts[textIndex];
+            
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex);
+                charIndex++;
+                
+                if (charIndex > currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, pauseTime);
+                    return;
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % typingTexts.length;
+                }
+            }
+            
+            setTimeout(typeText, isDeleting ? deletingSpeed : typingSpeed);
+        }
+        
+        setTimeout(typeText, 1500);
+
+        // Counter animation
+        function animateCounter() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = current.toFixed(1);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target % 1 === 0 ? target : target.toFixed(1);
+                    }
+                };
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCounter();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(counter);
+            });
+        }
+        animateCounter();
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('mobile-active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('mobile-active');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Reveal on scroll
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Timeline animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.animation = 'fadeInTimeline 1s ease forwards';
+                    }, index * 200);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // 3D card tilt effect
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+
+        // Parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 20;
+                shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #2D3436;
+            --light: #F8F9FA;
+            --gradient-warm: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            --gradient-cool: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
         }
 
         body {
@@ -650,12 +2312,33 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Badohma BAKAYOKO</h1>
-                <p class="title">Ingénieur Optimisation Flex & Marchés de l'Énergie</p>
-                <p class="subtitle">Double expertise : Optimisation industrielle et modélisation financière des marchés électricité/gaz</p>
+                <h1 class="glitch-name" data-text="Badohma BAKAYOKO">Badohma BAKAYOKO</h1>
+                <p class="title animated-title">Ingénieur Marchés de l'Énergie | Optimisation & Flexibilité | Industrie 4.0</p>
+                <p class="subtitle">
+                    <span class="typing-text"></span>
+                </p>
                 <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">Découvrir mes projets</a>
-                    <a href="https://linkedin.com/in/badohma" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                    <a href="#projects" class="btn btn-primary">
+                        <span>Découvrir mes projets</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="https://linkedin.com/in/badohma" target="_blank" class="btn btn-secondary">
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">M€/an gérés</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="30">0</span>
+                        <span class="stat-label">% réduction énergétique</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="1.2">0</span>
+                        <span class="stat-label">M€ flexibilité/an</span>
+                    </div>
                 </div>
             </div>
             <div class="hero-image">
@@ -717,7 +2400,7 @@
                 <div class="skill-category">
                     <h4>🌍 Langues</h4>
                     <span class="skill-tag">Français (Bilingue)</span>
-                    <span class="skill-tag">Anglais (C1)</span>
+                    <span class="skill-tag">Anglais (C1 - TOEIC 825)</span>
                     <span class="skill-tag">Espagnol (A2)</span>
                     <span class="skill-tag">Dioula</span>
                     <span class="skill-tag">Koyaka</span>
